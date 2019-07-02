@@ -4,18 +4,14 @@ esphome:
   board: esp8285
 
 wifi:
-  ssid: "IoT24"
+  ssid: !secret wifi_ssid
   password: !secret wifi_password
   fast_connect: true
 
 mqtt:
   broker: box.local
 
-# Enable logging
 logger:
-
-# Enable Home Assistant API
-# api:
 
 ota:
 
@@ -27,10 +23,6 @@ sensor:
     name: "Bedroom light WiFi Signal Sensor"
     update_interval: 60s
 
-  - platform: adc
-    pin: VCC
-    name: "Bedroom light VCC Voltage"
-
 binary_sensor:
   - platform: gpio
     pin:
@@ -38,12 +30,12 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: True
     name: "Bedroom light Touchpad"
-    #on_press:
-      #then:
-        #- light.toggle: bedroom_light
-    on_release:
+    on_press:
       then:
         - light.toggle: bedroom_light
+    #    on_release:
+    #      then:
+    #        - light.toggle: bedroom_light
 
 #switch:
   #- platform: gpio

@@ -4,9 +4,9 @@ esphome:
   board: esp8285
 
 wifi:
-  ssid: "IoT24"
+  ssid: !secret wifi_ssid
   password: !secret wifi_password
-  fast_connect: true
+  #  fast_connect: true
 
 mqtt:
   broker: box.local
@@ -30,18 +30,20 @@ binary_sensor:
       number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
-    name: "Bathroom light Touchpad 1"
-    #on_press:
-      #then:
-        #- light.toggle: bedroom_light
-    on_release:
+    name: "Bathroom LED Touchpad"
+    on_press:
       then:
-        - light.toggle: left_light
+        - light.toggle: led_light
 
-#switch:
-  #- platform: gpio
-    #name: "Bedroom light"
-    #pin: GPIO12
+  - platform: gpio
+    pin:
+      number: GPIO09
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Bathroom Main Touchpad"
+    on_press:
+      then:
+        - light.toggle: main_light
 
 output:
   # Register the blue LED as a dimmable output ....
@@ -51,14 +53,22 @@ output:
     inverted: True
   - platform: gpio
     pin: GPIO12
-    id: left_relay
+    id: led_relay
+  - platform: gpio
+    pin: GPIO05
+    id: main_relay
     
 light:
   - platform: binary
-    name: "Bathroom Light L"
-    id: left_light
-    output: left_relay
+    name: "Bathroom LED Light"
+    id: led_light
+    output: led_relay
+  
+  - platform: binary
+    name: "Bathroom Main Light"
+    id: main_light
+    output: main_relay
   
   - platform: monochromatic
-    name: "Bathroom light Touchpad LED Left"
+    name: "Bathroom Touchpad LED"
     output: blue_led
