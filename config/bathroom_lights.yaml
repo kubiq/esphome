@@ -8,11 +8,12 @@ wifi:
   password: !secret wifi_password
   #  fast_connect: true
 
-mqtt:
-  broker: box.local
+  #mqtt:
+  #  broker: box.local
+
+api:
 
 logger:
-  level: DEBUG
 
 ota:
 
@@ -27,7 +28,7 @@ sensor:
 binary_sensor:
   - platform: gpio
     pin:
-      number: GPIO0
+      number: GPIO9
       mode: INPUT_PULLUP
       inverted: True
     name: "Bathroom LED Touchpad"
@@ -37,7 +38,7 @@ binary_sensor:
 
   - platform: gpio
     pin:
-      number: GPIO09
+      number: GPIO0
       mode: INPUT_PULLUP
       inverted: True
     name: "Bathroom Main Touchpad"

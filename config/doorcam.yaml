@@ -1,5 +1,5 @@
 esphome:
-  name: flowercam
+  name: doorcam
   platform: ESP32
   board: nodemcu-32s
 
@@ -9,20 +9,20 @@ wifi:
 
 # Enable logging
 logger:
-  level: DEBUG
+        #  level: DEBUG
 
 ota:
 
 api:
 
-mqtt:
-  broker: box.local
+        #mqtt:
+        #  broker: box.local
 
 web_server:
   port: 80
 
 esp32_camera:
-  name: Flower Cam
+  name: Door Cam
   resolution: 640x480
   #  resolution: 320x240
   jpeg_quality: 10
@@ -40,8 +40,14 @@ esp32_camera:
   pixel_clock_pin: GPIO22
   power_down_pin: GPIO32
 
+switch:
+  - platform: restart
+    name: "Door Cam Restart"
+
 sensor:
   - platform: wifi_signal
-    name: "FlowerCam WiFi Signal Sensor"
+    name: "Door Cam WiFi Signal Sensor"
     update_interval: 60s
+
+
 
