@@ -1,0 +1,61 @@
+esphome:
+  name: server_outlet
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  #  fast_connect: true
+
+  #mqtt:
+  #  broker: box.local
+
+api:
+
+logger:
+
+ota:
+
+        #web_server:
+        #  port: 80    
+
+sensor:
+  - platform: wifi_signal
+    name: "Server outlet WiFi Signal Sensor"
+    update_interval: 60s
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "Server outlet Button"
+    on_press:
+      then:
+        - switch.toggle: relay
+
+  - platform: status
+    name: "Server outlet Status"
+
+
+switch:
+  - platform: gpio
+    pin: GPIO12
+    id: relay
+    internal: true
+
+output:
+# Register the green LED as a dimmable output ....
+   - platform: esp8266_pwm
+     id: s20_green_led
+     pin:
+       number: GPIO13
+       inverted: True
+
+light:
+# ... and then make a light out of it.
+   - platform: monochromatic
+     name: "Server outlet blue LED"
+     output: s20_green_led
