@@ -1,0 +1,43 @@
+
+
+substitutions:
+  devicename: hall_leds
+  upper_devicename: Hall LED lights
+
+
+
+esphome:
+  name: ${devicename}
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+  #  fast_connect: true
+
+api:
+
+logger:
+
+ota:
+
+web_server:
+  port: 80    
+
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: relay 
+
+light: 
+  - platform: binary
+    output: relay
+    name: ${upper_devicename}
+
+status_led:
+  pin:
+    number: GPIO0
+    inverted: yes
+
+

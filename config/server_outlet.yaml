@@ -1,5 +1,14 @@
+
+
+substitutions:
+  friendly_name: server_outlet
+  # Higher value gives lower watt readout
+  current_res: "0.00290"
+  # Lower value gives lower voltage readout
+  voltage_div: "940"
+
 esphome:
-  name: server_outlet
+  name: ${friendly_name}
   platform: ESP8266
   board: esp01_1m
 
@@ -17,24 +26,58 @@ logger:
 
 ota:
 
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
 web_server:
   port: 80    
 
 sensor:
   - platform: wifi_signal
-    name: "Server outlet WiFi Signal Sensor"
+    name: "${friendly_name} WiFi Signal Sensor"
     update_interval: 60s
+
   - platform: hlw8012
-    sel_pin: 12
+    sel_pin: 
+      number: 12
+      inverted: true
     cf_pin: 5
     cf1_pin: 14
     current:
-      name: "Server outlet Current"
+      name: "${friendly_name}_Amperage"
+      unit_of_measurement: A
+      accuracy_decimals: 3
+      icon: mdi:flash-circle
+
     voltage:
-      name: "Server outlet Voltage"
+      name: "${friendly_name}_Voltage"
+      unit_of_measurement: V
+      icon: mdi:flash-circle
     power:
-      name: "Server outlet Power"
+      name: "${friendly_name}_Wattage"
+      unit_of_measurement: W
+      id: "${friendly_name}_Wattage"
+      icon: mdi:flash-circle
+    change_mode_every: 4
     update_interval: 60s
+    current_resistor: ${current_res}
+    voltage_divider: ${voltage_div}
+
+  - platform: total_daily_energy
+    name: "${friendly_name}_Total Daily Energy"
+    power_id: "${friendly_name}_Wattage"
+    filters:
+        # Multiplication factor from W to kW is 0.001
+        - multiply: 0.001
+    unit_of_measurement: kWh
+    icon: mdi:clock-alert
+ 
+  - platform: uptime
+    name: ${friendly_name}_Uptime Sensor
+    icon: mdi:clock-outline
+
+
 
 binary_sensor:
   - platform: gpio
@@ -42,22 +85,21 @@ binary_sensor:
       number: GPIO13
       mode: INPUT_PULLUP
       inverted: True
-    name: "Server outlet Button"
+    name: "${friendly_name} Button"
     on_press:
       then:
         - switch.toggle: relay
 
   - platform: status
-    name: "Server outlet Status"
+    name: "${friendly_name} Status"
 
 
 switch:
   - platform: gpio
     pin: GPIO15
     id: relay
-    name: "Server outlet switch"
-
-    #    internal: true
+    name: "${friendly_name} switch"
+    restore_mode: ALWAYS_ON 
 
 output:
 # Register the green LED as a dimmable output ....

@@ -23,24 +23,24 @@ i2c:
     sda: GPIO12
     scl: GPIO14
 
-binary_sensor:
-  - platform: gpio
-    pin:
-      number: GPIO12
-      inverted: true
-    name: "Hall lights switch 1"
-    on_press:
-      then:
-        - switch.toggle: relay1
+    #binary_sensor:
+    #  - platform: gpio
+    #    pin:
+    #      number: GPIO13
+    #      inverted: true
+    #    name: "Hall lights switch 1"
+    #    on_press:
+    #      then:
+    #        - switch.toggle: relay1
 
-  - platform: gpio
-    pin:
-      number: GPIO14
-      inverted: true
-    name: "Hall lights switch 2"
-    on_press:
-      then:
-        - switch.toggle: relay2
+    #  - platform: gpio
+    #    pin:
+    #      number: GPIO5
+    #      inverted: true
+    #    name: "Hall lights switch 2"
+    #    on_press:
+    #      then:
+    #        - switch.toggle: relay2
 
 switch:
   - platform: gpio
@@ -50,7 +50,7 @@ switch:
     interlock: [relay2]
 
   - platform: gpio
-    pin: GPIO5
+    pin: GPIO15
     name: "Relay #2"
     id: relay2
     interlock: [relay1]
