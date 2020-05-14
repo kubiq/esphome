@@ -1,0 +1,38 @@
+
+substitutions:
+  devicename: test
+  upper_devicename: Test
+
+
+esphome:
+  name: ${devicename}
+  platform: ESP32
+  board: nodemcu-32s
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+  #captive_portal:
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+
+api:
+
+ota:
+
+sensor:
+  - platform: ultrasonic
+    trigger_pin: GPIO25
+    echo_pin: GPIO26
+    name: "Ultrasonic Sensor"
+    update_interval: 1s
+
+deep_sleep:
+  run_duration: 10s
+  sleep_duration: 10min
+
