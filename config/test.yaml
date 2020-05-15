@@ -3,7 +3,6 @@ substitutions:
   devicename: test
   upper_devicename: Test
 
-
 esphome:
   name: ${devicename}
   platform: ESP32
@@ -14,12 +13,20 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-  #captive_portal:
+captive_portal:
 
-# Enable logging
+mqtt:
+  broker: !secret broker_ip
+  discovery: false
+  keepalive: 600s
+  on_message:
+    topic: ${devicename}/ota_mode
+    payload: 'ON'
+    then:
+      - deep_sleep.prevent: deep_sleep_1
+
 logger:
-
-# Enable Home Assistant API
+  level: INFO
 
 api:
 
@@ -33,6 +40,7 @@ sensor:
     update_interval: 1s
 
 deep_sleep:
-  run_duration: 10s
-  sleep_duration: 10min
+  id: deep_sleep_1
+  run_duration: 20s
+  sleep_duration: 1min
 
