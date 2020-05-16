@@ -35,3 +35,8 @@ ota:
 #   run_duration: 20s
 #   sleep_duration: 1min
 
+sensor:
+  - platform: wifi_signal
+    name: "${upper_devicename} RSSI"
+    update_interval: 10s
+    
