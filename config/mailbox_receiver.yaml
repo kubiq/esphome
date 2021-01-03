@@ -1,0 +1,41 @@
+
+substitutions:
+  devicename: mailbox_receiver
+  upper_devicename: Mailbox Receiver
+
+esphome:
+  name: ${devicename}
+  platform: ESP32
+  board: esp32dev
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+# captive_portal:
+
+mqtt:
+  broker: !secret broker_ip
+  discovery: true
+  keepalive: 600s
+    #  on_message:
+    #    - topic: ${devicename}/ota_mode
+    #      payload: 'ON'
+    #      then:
+    #        - deep_sleep.prevent: deep_sleep_1
+
+logger:
+  level: VERBOSE
+
+ota:
+
+  #deep_sleep:
+  #  id: deep_sleep_1
+  #  run_duration: 10s
+  #  sleep_duration: 0min
+
+remote_receiver:
+  pin: GPIO16
+  dump: all
+

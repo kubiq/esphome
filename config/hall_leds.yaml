@@ -4,21 +4,23 @@ substitutions:
   devicename: hall_leds
   upper_devicename: Hall LED lights
 
-
-
 esphome:
   name: ${devicename}
-  platform: ESP8266
-  board: nodemcuv2
+  platform: ESP32
+  board: nodemcu-32s
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
-  #  fast_connect: true
+    #  fast_connect: true
 
-api:
+  #api:
+
+mqtt:
+  broker: !secret broker_ip
 
 logger:
+  level: DEBUG
 
 ota:
 
@@ -27,7 +29,7 @@ web_server:
 
 output:
   - platform: gpio
-    pin: GPIO4
+    pin: GPIO17
     id: relay 
 
 light: 

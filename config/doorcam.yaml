@@ -15,9 +15,6 @@ ota:
 
 api:
 
-        #mqtt:
-        #  broker: box.local
-
 web_server:
   port: 80
 

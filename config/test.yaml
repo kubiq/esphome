@@ -19,28 +19,38 @@ mqtt:
   broker: !secret broker_ip
   discovery: false
   keepalive: 600s
-  on_message:
-    topic: ${devicename}/ota_mode
-    payload: 'ON'
-    then:
-      - deep_sleep.prevent: deep_sleep_1
+  #  on_message:
+  #    topic: ${devicename}/ota_mode
+  #    payload: 'ON'
+  #    then:
+  #      - deep_sleep.prevent: deep_sleep_1
 
 logger:
-  level: INFO
+  level: DEBUG
 
 api:
 
 ota:
 
 sensor:
-  - platform: ultrasonic
-    trigger_pin: GPIO25
-    echo_pin: GPIO26
-    name: "Ultrasonic Sensor"
-    update_interval: 1s
 
-deep_sleep:
-  id: deep_sleep_1
-  run_duration: 20s
-  sleep_duration: 1min
+  - platform: adc
+    pin: GPIO35
+    #    filters:
+    #      - lambda: |-
+    #          if (x > 0.53) {
+    #            return 0;
+    #          } else if (x < 0.29) {
+    #            return 100;
+    #          } else {
+    #            return (0.53-x) / (0.53-0.29) * 100.0;
+    #          }
+    name: "Grapefruit_watering"
+    attenuation: 11db
+    update_interval: 2s
+
+    #deep_sleep:
+    #  id: deep_sleep_1
+    #  run_duration: 20s
+    #  sleep_duration: 1min
 
