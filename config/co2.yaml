@@ -1,10 +1,11 @@
 
 substitutions:
-  node_name: co2
-  device_verbose_name: "CO2 sensor"
+  devicename: co2
+  upper_devicename: CO2
+  update_interval: 600s
 
 esphome:
-  name: $node_name
+  name: $devicename
   platform: ESP32
   board: nodemcu-32s
 
@@ -12,7 +13,7 @@ packages:
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
-  api: !include common/api.yaml
+  #api: !include common/api.yaml
   ota: !include common/ota.yaml
 
 uart:
@@ -22,10 +23,13 @@ uart:
   id: uart_co
 
 sensor:
+  - <<: !include common/sensor/uptime.config.yaml
+  - <<: !include common/sensor/wifi_signal.config.yaml
+
   - platform: mhz19
     uart_id: uart_co
     co2:
-      name: $device_verbose_name
+      name: $upper_devicename
       id: coval
     temperature:
       name: "CO2 Temperature"
