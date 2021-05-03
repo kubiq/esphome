@@ -1,0 +1,6 @@
+
+mqtt:
+  broker: !secret broker_ip
+  discovery: true
+  keepalive: 600s
+

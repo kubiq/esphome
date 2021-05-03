@@ -1,0 +1,18 @@
+
+substitutions:
+  devicename: empty
+  upper_devicename: Empty
+
+esphome:
+  name: ${devicename}
+  platform: ESP32
+  board: nodemcu-32s
+
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+logger:
+  level: DEBUG
+

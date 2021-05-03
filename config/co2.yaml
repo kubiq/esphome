@@ -9,9 +9,10 @@ wifi:
   fast_connect: true
 
 mqtt:
-  broker: !secret broker_ip
+  broker: !secret mqtt_host
 
 logger:
+  level: !secret log_level
 
 api:
 
