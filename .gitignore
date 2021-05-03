@@ -10,3 +10,4 @@
 **/platformio.ini
 **/partitions.csv
 config/secrets.yaml
+.idea
