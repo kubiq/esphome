@@ -9,4 +9,5 @@
 **/src/
 **/platformio.ini
 **/partitions.csv
-config/secrets.yaml
+config/common/secrets.yaml
+.idea

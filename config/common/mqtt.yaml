@@ -1,6 +1,5 @@
 
 mqtt:
-  broker: !secret broker_ip
+  broker: !secret mqtt_host
   discovery: true
   keepalive: 600s
-
