@@ -1,0 +1,51 @@
+
+substitutions:
+  devicename: hall_lights
+  upper_devicename: Hall Lights
+  update_interval: 600s
+
+esphome:
+  name: $devicename
+  platform: ESP8266
+  board: esp01_1m
+
+packages:
+  wifi: !include common/wifi.yaml
+  mqtt: !include common/mqtt.yaml
+  logger: !include common/logger.yaml
+  #api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
+
+captive_portal:
+
+sensor:
+  - <<: !include common/sensor/uptime.config.yaml
+  - <<: !include common/sensor/wifi_signal.config.yaml
+
+
+# Device Specific Config
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: shelly_1_relay
+
+light:
+  - platform: binary
+    name: ${upper_devicename}
+    output: shelly_1_relay
+    id: lightid
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO5
+      #mode: INPUT_PULLUP
+      #inverted: True
+    name: "${upper_devicename} Switch Shelly 1"
+    on_state:
+      then:
+        - light.toggle: lightid
+    internal: true
+    id: switchid
+

@@ -1,0 +1,104 @@
+
+substitutions:
+  devicename: bathroom_light_shelly_25
+  upper_devicename: Bathroom Light
+  update_interval: 600s
+
+esphome:
+  name: $devicename
+  platform: ESP8266
+  board: esp01_1m
+
+packages:
+  wifi: !include common/wifi.yaml
+  mqtt: !include common/mqtt.yaml
+  logger: !include common/logger.yaml
+  #api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
+
+captive_portal:
+
+sensor:
+  - <<: !include common/sensor/uptime.config.yaml
+  - <<: !include common/sensor/wifi_signal.config.yaml
+
+  - platform: ade7953
+    voltage:
+      name: ${devicename} Voltage
+    current_a:
+      name: ${devicename} Current B
+    current_b:
+      name: ${devicename} Current A
+    active_power_a:
+      name: ${devicename} Active Power B
+      filters:
+        - multiply: -1
+    active_power_b:
+      name: ${devicename} Active Power A
+      filters:
+        - multiply: -1
+    update_interval: 60s
+
+  # NTC Temperature
+  - platform: ntc
+    sensor: temp_resistance_reading
+    name: ${devicename} Temperature
+    unit_of_measurement: "°C"
+    accuracy_decimals: 1
+    icon: "mdi:thermometer"
+    calibration:
+      b_constant: 3350
+      reference_resistance: 10kOhm
+      reference_temperature: 298.15K
+  - platform: resistance
+    id: temp_resistance_reading
+    sensor: temp_analog_reading
+    configuration: DOWNSTREAM
+    resistor: 32kOhm
+  - platform: adc
+    id: temp_analog_reading
+    pin: A0
+
+i2c:
+  sda: GPIO12
+  scl: GPIO14
+
+status_led:
+  pin:
+    number: GPIO0
+    inverted: yes
+
+binary_sensor:
+  - platform: gpio
+    pin: GPIO16
+    name: "ade7953 IRQ pin"
+    internal: true
+  - platform: gpio
+    pin:
+      number: GPIO13
+    name: ${devicename} Switch1
+    on_press:
+      then:
+        - switch.toggle: shelly_relay_1
+  - platform: gpio
+    pin:
+      number: GPIO5
+    name: ${devicename} Switch2
+    on_press:
+      then:
+        - switch.toggle: shelly_relay_2
+
+switch:
+  - platform: gpio
+    id: shelly_relay_1
+    name: ${devicename} Relay1
+    pin: GPIO15
+    icon: "mdi:electric-switch"
+    restore_mode: RESTORE_DEFAULT_OFF
+  - platform: gpio
+    id: shelly_relay_2
+    name: ${devicename} Relay2
+    pin: GPIO4
+    icon: "mdi:electric-switch"
+    restore_mode: RESTORE_DEFAULT_OFF
