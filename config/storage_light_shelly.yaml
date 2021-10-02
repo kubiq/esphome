@@ -1,7 +1,7 @@
 
 substitutions:
-  devicename: hall_lights
-  upper_devicename: Hall Lights
+  devicename: storage-light
+  upper_devicename: Storage Light
   update_interval: 600s
 
 esphome:
@@ -16,13 +16,11 @@ packages:
   #api: !include common/api.yaml
   ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
-
-captive_portal:
+  captive_portal: !include common/captive_portal.yaml
 
 sensor:
   - <<: !include common/sensor/uptime.config.yaml
   - <<: !include common/sensor/wifi_signal.config.yaml
-
 
 # Device Specific Config
 output:
