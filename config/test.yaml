@@ -8,49 +8,11 @@ esphome:
   platform: ESP32
   board: nodemcu-32s
 
-
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-
-captive_portal:
-
-mqtt:
-  broker: !secret broker_ip
-  discovery: false
-  keepalive: 600s
-  #  on_message:
-  #    topic: ${devicename}/ota_mode
-  #    payload: 'ON'
-  #    then:
-  #      - deep_sleep.prevent: deep_sleep_1
-
-logger:
-  level: DEBUG
-
-api:
-
-ota:
-
-sensor:
-
-  - platform: adc
-    pin: GPIO35
-    #    filters:
-    #      - lambda: |-
-    #          if (x > 0.53) {
-    #            return 0;
-    #          } else if (x < 0.29) {
-    #            return 100;
-    #          } else {
-    #            return (0.53-x) / (0.53-0.29) * 100.0;
-    #          }
-    name: "Grapefruit_watering"
-    attenuation: 11db
-    update_interval: 2s
-
-    #deep_sleep:
-    #  id: deep_sleep_1
-    #  run_duration: 20s
-    #  sleep_duration: 1min
-
+packages:
+  wifi: !include common/wifi.yaml
+  mqtt: !include common/mqtt.yaml
+  logger: !include common/logger.yaml
+  #api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
+  captive_portal: !include common/captive_portal.yaml

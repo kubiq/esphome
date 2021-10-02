@@ -1,6 +1,6 @@
 
 substitutions:
-  devicename: bathroom_radiator
+  devicename: bathroom-radiator
   upper_devicename: Bathroom Radiator
   update_interval: 600s
 
@@ -16,8 +16,7 @@ packages:
   #api: !include common/api.yaml
   ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
-
-captive_portal:
+  captive_portal: !include common/captive_portal.yaml
 
 sensor:
   - <<: !include common/sensor/uptime.config.yaml
