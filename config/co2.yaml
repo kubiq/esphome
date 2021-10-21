@@ -15,6 +15,7 @@ packages:
   logger: !include common/logger.yaml
   #api: !include common/api.yaml
   ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
 
 uart:
   rx_pin: 16
@@ -34,4 +35,32 @@ sensor:
     temperature:
       name: "CO2 Temperature"
       internal: true
-    update_interval: 60s
+    update_interval: $update_interval
+
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:6A:92:2B'
+    temperature:
+      name: "MiFlora 1 Temperature"
+    moisture:
+      name: "MiFlora 1 Moisture"
+    illuminance:
+      name: "MiFlora 1 Illuminance"
+    conductivity:
+      name: "MiFlora 1 Soil Conductivity"
+    battery_level:
+      name: "MiFlora 1 Battery Level"
+
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:6A:92:7A'
+    temperature:
+      name: "MiFlora 2 Temperature"
+    moisture:
+      name: "MiFlora 2 Moisture"
+    illuminance:
+      name: "MiFlora 2 Illuminance"
+    conductivity:
+      name: "MiFlora 2 Soil Conductivity"
+    battery_level:
+      name: "MiFlora 2 Battery Level"
+
+esp32_ble_tracker:

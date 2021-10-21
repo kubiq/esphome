@@ -95,21 +95,6 @@ sensor:
             return (3.5-x) / (3.5-1.2) * 100.0;
           }
 
-  - platform: xiaomi_hhccjcy01
-    mac_address: 'C4:7C:8D:6A:92:2B'
-    temperature:
-      name: "MiFlora 1 Temperature"
-    moisture:
-      name: "MiFlora 1 Moisture"
-    illuminance:
-      name: "MiFlora 1 Illuminance"
-    conductivity:
-      name: "MiFlora 1 Soil Conductivity"
-    battery_level:
-      name: "MiFlora 1 Battery Level"
-
-esp32_ble_tracker:
-
 i2c:
   sda: 19
   scl: 18
@@ -125,7 +110,7 @@ display:
     model: "SSD1306 128x64"
     address: 0x3C
     lambda: |-
-      it.printf(0, 8, id(font1), "Flower 1: %.1f", id(f1).state);
-      it.printf(0, 24, id(font1), "Flower 2: %.1f", id(f2).state);
-      it.printf(0, 40, id(font1), "Flower 3: %.1f", id(f3).state);
-      it.printf(0, 56, id(font1), "Flower 4: %.1f", id(f4).state);
+      it.printf(0, 0, id(font1), "Flower 1: %.1f", id(f1).state);
+      it.printf(0, 16, id(font1), "Flower 2: %.1f", id(f2).state);
+      it.printf(0, 32, id(font1), "Flower 3: %.1f", id(f3).state);
+      it.printf(0, 48, id(font1), "Flower 4: %.1f", id(f4).state);
