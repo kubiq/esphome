@@ -63,4 +63,66 @@ sensor:
     battery_level:
       name: "MiFlora 2 Battery Level"
 
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:6D:B8:F2'
+    temperature:
+      name: "MiFlora 3 Temperature"
+    moisture:
+      name: "MiFlora 3 Moisture"
+    illuminance:
+      name: "MiFlora 3 Illuminance"
+    conductivity:
+      name: "MiFlora 3 Soil Conductivity"
+    battery_level:
+      name: "MiFlora 3 Battery Level"
+
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:6D:A4:F8'
+    temperature:
+      name: "MiFlora 4 Temperature"
+    moisture:
+      name: "MiFlora 4 Moisture"
+    illuminance:
+      name: "MiFlora 4 Illuminance"
+    conductivity:
+      name: "MiFlora 4 Soil Conductivity"
+    battery_level:
+      name: "MiFlora 4 Battery Level"
+
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:6D:AE:83'
+    temperature:
+      name: "MiFlora 5 Temperature"
+    moisture:
+      name: "MiFlora 5 Moisture"
+    illuminance:
+      name: "MiFlora 5 Illuminance"
+    conductivity:
+      name: "MiFlora 5 Soil Conductivity"
+    battery_level:
+      name: "MiFlora 5 Battery Level"
+
+  - platform: xiaomi_hhccjcy01
+    mac_address: 'C4:7C:8D:6D:F8:6C'
+    temperature:
+      name: "MiFlora 6 Temperature"
+    moisture:
+      name: "MiFlora 6 Moisture"
+    illuminance:
+      name: "MiFlora 6 Illuminance"
+    conductivity:
+      name: "MiFlora 6 Soil Conductivity"
+    battery_level:
+      name: "MiFlora 6 Battery Level"
+
+  - platform: xiaomi_lywsd03mmc
+    mac_address: "A4:C1:38:49:33:DA"
+    bindkey: "5f8274a0bb26dbf73506fca2ec1e3ec5"
+    temperature:
+      name: "Xiaomi Thermometer Temperature"
+    humidity:
+      name: "Xiaomi Thermometer Humidity"
+    battery_level:
+      name: "Xiaomi Thermometer Battery Level"
+
 esp32_ble_tracker:
