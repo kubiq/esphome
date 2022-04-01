@@ -13,7 +13,7 @@ packages:
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
-  #api: !include common/api.yaml
+#  api: !include common/api.yaml
   ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
 
@@ -78,14 +78,14 @@ binary_sensor:
     pin:
       number: GPIO13
     name: ${devicename} Switch1
-    on_press:
+    on_state:
       then:
         - switch.toggle: shelly_relay_1
   - platform: gpio
     pin:
       number: GPIO5
     name: ${devicename} Switch2
-    on_press:
+    on_state:
       then:
         - switch.toggle: shelly_relay_2
 
