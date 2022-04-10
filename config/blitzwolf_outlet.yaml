@@ -1,0 +1,107 @@
+
+substitutions:
+  devicename: blitzwoif-outlet
+  upper_devicename: Blitzwoif Outlet
+  update_interval: 60s
+  # Higher value gives lower watt readout
+  current_res: "0.00290"
+  # Lower value gives lower voltage readout
+  voltage_div: "940"
+
+esphome:
+  name: $devicename
+  platform: ESP8266
+  board: esp01_1m
+
+packages:
+  wifi: !include common/wifi.yaml
+  mqtt: !include common/mqtt.yaml
+  logger: !include common/logger.yaml
+  #api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
+
+#time:
+#  - platform: homeassistant
+#    id: homeassistant_time
+
+sensor:
+  - <<: !include common/sensor/uptime.config.yaml
+  - <<: !include common/sensor/wifi_signal.config.yaml
+
+  - platform: hlw8012
+    sel_pin:
+      number: 12
+      inverted: true
+    cf_pin: 5
+    cf1_pin: 14
+    current:
+      name: "${upper_devicename} Amperage"
+      unit_of_measurement: A
+      accuracy_decimals: 3
+      icon: mdi:flash-circle
+
+    voltage:
+      name: "${upper_devicename} Voltage"
+      unit_of_measurement: V
+      icon: mdi:flash-circle
+    power:
+      name: "${upper_devicename} Wattage"
+      unit_of_measurement: W
+      id: "wattage"
+      icon: mdi:flash-circle
+    change_mode_every: 4
+    update_interval: 60s
+    current_resistor: ${current_res}
+    voltage_divider: ${voltage_div}
+
+#  - platform: total_daily_energy
+#    name: "${upper_devicename} Total Daily Energy"
+#    power_id: "wattage"
+#    filters:
+#      # Multiplication factor from W to kW is 0.001
+#      - multiply: 0.001
+#    unit_of_measurement: kWh
+#    icon: mdi:clock-alert
+
+  - platform: uptime
+    name: ${upper_devicename}_Uptime Sensor
+    icon: mdi:clock-outline
+
+
+
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO13
+      mode: INPUT_PULLUP
+      inverted: True
+    name: "${upper_devicename} Button"
+    on_press:
+      then:
+        - switch.toggle: relay
+
+  - platform: status
+    name: "${upper_devicename} Status"
+
+
+switch:
+  - platform: gpio
+    pin: GPIO15
+    id: relay
+    name: "${upper_devicename} switch"
+    restore_mode: ALWAYS_ON
+
+output:
+  # Register the green LED as a dimmable output ....
+  - platform: esp8266_pwm
+    id: s20_green_led
+    pin:
+      number: GPIO13
+      inverted: True
+
+      #light:
+# ... and then make a light out of it.
+#   - platform: monochromatic
+#     name: "Server outlet blue LED"
+#     output: red_led
