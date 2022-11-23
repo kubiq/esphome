@@ -10,6 +10,7 @@ esphome:
   board: esp32dev
 
 packages:
+  captive_portal: !include common/captive_portal.yaml
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
