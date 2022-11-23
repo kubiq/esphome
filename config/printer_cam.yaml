@@ -1,0 +1,52 @@
+
+substitutions:
+  devicename: printercam
+  upper_devicename: Printer Cam
+  update_interval: 600s
+
+esphome:
+  name: printercam
+  platform: ESP32
+  board: nodemcu-32s
+
+packages:
+  captive_portal: !include common/captive_portal.yaml
+  wifi: !include common/wifi.yaml
+  mqtt: !include common/mqtt.yaml
+  logger: !include common/logger.yaml
+  #api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
+
+esp32_camera:
+  name: Printer Cam
+  resolution: 640x480
+  #  resolution: 320x240
+  jpeg_quality: 10
+  max_framerate: 10Hz
+  
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+
+esp32_camera_web_server:
+  - port: 8080
+    mode: stream
+  - port: 8081
+    mode: snapshot
+
+switch:
+  - platform: restart
+    name: "Door Cam Restart"
+
+sensor:
+  - <<: !include common/sensor/uptime.config.yaml
+  - <<: !include common/sensor/wifi_signal.config.yaml
