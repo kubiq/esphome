@@ -1,7 +1,18 @@
 
 substitutions:
-  devicename: mailbox_transmitter
+  devicename: mailbox-transmitter
   upper_devicename: Mailbox Transmitter
+
+####
+####
+#### Arduino IDE is used
+#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE
+#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE
+#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE
+#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE#### DO NOT USE
+####
+####
+####
 
 esphome:
   name: ${devicename}

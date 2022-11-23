@@ -10,6 +10,7 @@ esphome:
   board: nodemcuv2
 
 packages:
+  captive_portal: !include common/captive_portal.yaml
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
@@ -17,11 +18,10 @@ packages:
   ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
 
-captive_portal:
-
 sensor:
   - <<: !include common/sensor/uptime.config.yaml
   - <<: !include common/sensor/wifi_signal.config.yaml
+
   - platform: pm1006
     pm_2_5:
       name: "Particulate Matter 2.5µm Concentration"

@@ -14,6 +14,7 @@ esphome:
   board: esp01_1m
 
 packages:
+  captive_portal: !include common/captive_portal.yaml
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
@@ -28,6 +29,10 @@ packages:
 sensor:
   - <<: !include common/sensor/uptime.config.yaml
   - <<: !include common/sensor/wifi_signal.config.yaml
+
+  - platform: total_daily_energy
+    name: "${upper_devicename} Total Daily Energy"
+    power_id: power
 
   - platform: hlw8012
     sel_pin:
@@ -46,9 +51,9 @@ sensor:
       unit_of_measurement: V
       icon: mdi:flash-circle
     power:
-      name: "${upper_devicename} Wattage"
+      name: "${upper_devicename} Power"
       unit_of_measurement: W
-      id: "wattage"
+      id: power
       icon: mdi:flash-circle
     change_mode_every: 4
     update_interval: 60s
@@ -68,7 +73,10 @@ sensor:
     name: ${upper_devicename}_Uptime Sensor
     icon: mdi:clock-outline
 
-
+time:
+  - platform: sntp
+    id: my_time
+    timezone: Europe/Prague
 
 binary_sensor:
   - platform: gpio

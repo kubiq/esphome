@@ -10,10 +10,11 @@ esphome:
   board: esp01_1m
 
 packages:
+  captive_portal: !include common/captive_portal.yaml
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
-#  api: !include common/api.yaml
+  #api: !include common/api.yaml
   ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
 
