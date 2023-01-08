@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: co2
-  upper_devicename: CO2
-  update_interval: 600s
+  deviceName: co2
+  upperDeviceName: CO2
+  updateInterval: 600s
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP32
   board: nodemcu-32s
 
@@ -31,12 +31,12 @@ sensor:
   - platform: mhz19
     uart_id: uart_co
     co2:
-      name: $upper_devicename
+      name: $upperDeviceName
       id: coval
     temperature:
       name: "CO2 Temperature"
       internal: true
-    update_interval: $update_interval
+    updateInterval: $updateInterval
 
   - platform: xiaomi_hhccjcy01
     mac_address: 'C4:7C:8D:6A:92:2B'

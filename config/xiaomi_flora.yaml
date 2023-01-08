@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: xiaomi-flora
-  upper_devicename: Xiaomi Flora
-  update_interval: 600s
+  deviceName: xiaomi-flora
+  upperDeviceName: Xiaomi Flora
+  updateInterval: 600s
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP32
   board: nodemcu-32s
 
@@ -78,3 +78,7 @@ sensor:
       name: "MiFlora 11 Soil Conductivity"
 
 esp32_ble_tracker:
+  scan_parameters:
+    interval: 1100ms
+    window: 1100ms
+

@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: bathroom_light_shelly_25
-  upper_devicename: Bathroom Light
-  update_interval: 600s
+  deviceName: bathroom_light_shelly_25
+  upperDeviceName: Bathroom Light
+  updateInterval: 600s
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP8266
   board: esp01_1m
 
@@ -26,25 +26,25 @@ sensor:
 
   - platform: ade7953
     voltage:
-      name: ${devicename} Voltage
+      name: ${deviceName} Voltage
     current_a:
-      name: ${devicename} Current B
+      name: ${deviceName} Current B
     current_b:
-      name: ${devicename} Current A
+      name: ${deviceName} Current A
     active_power_a:
-      name: ${devicename} Active Power B
+      name: ${deviceName} Active Power B
       filters:
         - multiply: -1
     active_power_b:
-      name: ${devicename} Active Power A
+      name: ${deviceName} Active Power A
       filters:
         - multiply: -1
-    update_interval: 60s
+    updateInterval: 60s
 
   # NTC Temperature
   - platform: ntc
     sensor: temp_resistance_reading
-    name: ${devicename} Temperature
+    name: ${deviceName} Temperature
     unit_of_measurement: "°C"
     accuracy_decimals: 1
     icon: "mdi:thermometer"
@@ -78,14 +78,14 @@ binary_sensor:
   - platform: gpio
     pin:
       number: GPIO13
-    name: ${devicename} Switch1
+    name: ${deviceName} Switch1
     on_state:
       then:
         - switch.toggle: shelly_relay_1
   - platform: gpio
     pin:
       number: GPIO5
-    name: ${devicename} Switch2
+    name: ${deviceName} Switch2
     on_state:
       then:
         - switch.toggle: shelly_relay_2
@@ -93,13 +93,13 @@ binary_sensor:
 switch:
   - platform: gpio
     id: shelly_relay_1
-    name: ${devicename} Relay1
+    name: ${deviceName} Relay1
     pin: GPIO15
     icon: "mdi:electric-switch"
     restore_mode: RESTORE_DEFAULT_OFF
   - platform: gpio
     id: shelly_relay_2
-    name: ${devicename} Relay2
+    name: ${deviceName} Relay2
     pin: GPIO4
     icon: "mdi:electric-switch"
     restore_mode: RESTORE_DEFAULT_OFF

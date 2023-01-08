@@ -3,3 +3,5 @@ mqtt:
   broker: !secret mqtt_host
   discovery: true
   keepalive: 600s
+  username: !secret mqtt_username
+  password: !secret mqtt_password

@@ -1,8 +1,8 @@
 
 substitutions:
-  devicename: printercam
-  upper_devicename: Printer Cam
-  update_interval: 600s
+  deviceName: printercam
+  upperDeviceName: Printer Cam
+  updateInterval: 600s
 
 esphome:
   name: printercam

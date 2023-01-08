@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: flowers
-  upper_devicename: Flowers
-  update_interval: 600s
+  deviceName: flowers
+  upperDeviceName: Flowers
+  updateInterval: 600s
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP32
   board: esp32dev
 
@@ -27,7 +27,7 @@ sensor:
     pin: GPIO36
     attenuation: 11db
     name: "Flower 1 moisture"
-    update_interval: $update_interval
+    updateInterval: $updateInterval
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
     filters:
@@ -46,7 +46,7 @@ sensor:
     pin: GPIO34
     attenuation: 11db
     name: "Flower 2 moisture"
-    update_interval: $update_interval
+    updateInterval: $updateInterval
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
     filters:
@@ -65,7 +65,7 @@ sensor:
     pin: GPIO32
     attenuation: 11db
     name: "Flower 3 moisture"
-    update_interval: $update_interval
+    updateInterval: $updateInterval
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
     filters:
@@ -83,7 +83,7 @@ sensor:
     pin: GPIO33
     attenuation: 11db
     name: "Flower 4 moisture"
-    update_interval: $update_interval
+    updateInterval: $updateInterval
     unit_of_measurement: "%"
     icon: "mdi:water-percent"
     filters:

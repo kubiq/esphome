@@ -1,10 +1,10 @@
 
 substitutions:
-  devicename: empty
-  upper_devicename: Empty
+  deviceName: empty
+  upperDeviceName: Empty
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP32
   board: nodemcu-32s
 

@@ -47,7 +47,7 @@ switch:
 sensor:
   - platform: wifi_signal
     name: "RoboCam WiFi Signal Sensor"
-    update_interval: 60s
+    updateInterval: 60s
     #  - platform: adc
     #    pin: 33
     #    attenuation: 11db

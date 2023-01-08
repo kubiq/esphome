@@ -1,7 +1,7 @@
 
 substitutions:
-  devicename: mailbox-transmitter
-  upper_devicename: Mailbox Transmitter
+  deviceName: mailbox-transmitter
+  upperDeviceName: Mailbox Transmitter
 
 ####
 ####
@@ -15,7 +15,7 @@ substitutions:
 ####
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP32
   board: esp32dev
 
@@ -28,7 +28,7 @@ mqtt:
   discovery: true
   keepalive: 600s
   on_message:
-    - topic: ${devicename}/trigger
+    - topic: ${deviceName}/trigger
       payload: 'ON'
       then:
         - remote_transmitter.transmit_rc_switch_raw:

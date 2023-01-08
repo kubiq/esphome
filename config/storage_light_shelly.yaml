@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: storage-light
-  upper_devicename: Storage Light
-  update_interval: 600s
+  deviceName: storage-light
+  upperDeviceName: Storage Light
+  updateInterval: 600s
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP8266
   board: esp01_1m
 
@@ -30,7 +30,7 @@ output:
 
 light:
   - platform: binary
-    name: ${upper_devicename}
+    name: ${upperDeviceName}
     output: shelly_1_relay
     id: lightid
 
@@ -40,7 +40,7 @@ binary_sensor:
       number: GPIO5
       #mode: INPUT_PULLUP
       #inverted: True
-    name: "${upper_devicename} Switch Shelly 1"
+    name: "${upperDeviceName} Switch Shelly 1"
     on_state:
       then:
         - light.toggle: lightid

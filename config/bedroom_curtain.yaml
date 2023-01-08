@@ -1,52 +1,51 @@
 
 substitutions:
-  devicename: bedroom_curtain
-  upper_devicename: Bedroom Curtatin
-
+  deviceName: bedroom_curtain
+  upperDeviceName: Bedroom Curtain
+  updateInterval: 600s
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP32
   board: nodemcu-32s
 
 
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
+packages:
+  captive_portal: !include common/captive_portal.yaml
+  wifi: !include common/wifi.yaml
+  mqtt: !include common/mqtt.yaml
+  logger: !include common/logger.yaml
+  #api: !include common/api.yaml
+  ota: !include common/ota.yaml
+  web_server: !include common/web_server.yaml
 
-  #captive_portal:
+sensor:
+  - <<: !include common/sensor/uptime.config.yaml
+  - <<: !include common/sensor/wifi_signal.config.yaml
 
-web_server:
-  port: 80
-
-# Enable logging
-logger:
-
-# Enable Home Assistant API
-
-api:
-  services:
-    - service: control_stepper
-      variables:
-        target: int
+number:
+  - platform: template
+    name: Curtain Control
+    min_value: -10000
+    max_value: 10000
+    step: 1
+    set_action:
       then:
         - stepper.set_target:
-            id: ${devicename}
-            target: !lambda 'return target;'
-
-ota:
+            id: ${deviceName}
+            target: !lambda 'return x;'
 
 # Example configuration entry
 stepper:
   - platform: a4988
-    id: ${devicename}
+    id: ${deviceName}
     step_pin: GPIO4
     dir_pin: GPIO2
-    max_speed: 500 steps/s
+    max_speed: 300 steps/s
 
     # Optional:
-    acceleration: 100
-    deceleration: 100
+    acceleration: inf
+    deceleration: inf
     sleep_pin: 
       number: GPIO22
       inverted: true

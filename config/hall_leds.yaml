@@ -1,11 +1,11 @@
 
 
 substitutions:
-  devicename: hall_leds
-  upper_devicename: Hall LED lights
+  deviceName: hall_leds
+  upperDeviceName: Hall LED lights
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP32
   board: nodemcu-32s
 
@@ -35,7 +35,7 @@ output:
 light: 
   - platform: binary
     output: relay
-    name: ${upper_devicename}
+    name: ${upperDeviceName}
 
 status_led:
   pin:

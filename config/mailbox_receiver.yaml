@@ -1,8 +1,8 @@
 
 substitutions:
-  devicename: mailbox-receiver
-  upper_devicename: Mailbox Receiver
-  update_interval: 600s
+  deviceName: mailbox-receiver
+  upperDeviceName: Mailbox Receiver
+  updateInterval: 600s
 
 ####
 ####
@@ -16,7 +16,7 @@ substitutions:
 ####
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP32
   board: nodemcu-32s
 

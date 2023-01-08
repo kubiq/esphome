@@ -1,15 +1,15 @@
 
 substitutions:
-  devicename: blitzwoif-outlet
-  upper_devicename: Blitzwoif Outlet
-  update_interval: 60s
+  deviceName: blitzwoif-outlet
+  upperDeviceName: Blitzwoif Outlet
+  updateInterval: 60s
   # Higher value gives lower watt readout
   current_res: "0.00290"
   # Lower value gives lower voltage readout
   voltage_div: "940"
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP8266
   board: esp01_1m
 
@@ -31,7 +31,7 @@ sensor:
   - <<: !include common/sensor/wifi_signal.config.yaml
 
   - platform: total_daily_energy
-    name: "${upper_devicename} Total Daily Energy"
+    name: "${upperDeviceName} Total Daily Energy"
     power_id: power
 
   - platform: hlw8012
@@ -41,27 +41,27 @@ sensor:
     cf_pin: 5
     cf1_pin: 14
     current:
-      name: "${upper_devicename} Amperage"
+      name: "${upperDeviceName} Amperage"
       unit_of_measurement: A
       accuracy_decimals: 3
       icon: mdi:flash-circle
 
     voltage:
-      name: "${upper_devicename} Voltage"
+      name: "${upperDeviceName} Voltage"
       unit_of_measurement: V
       icon: mdi:flash-circle
     power:
-      name: "${upper_devicename} Power"
+      name: "${upperDeviceName} Power"
       unit_of_measurement: W
       id: power
       icon: mdi:flash-circle
     change_mode_every: 4
-    update_interval: 60s
+    updateInterval: 60s
     current_resistor: ${current_res}
     voltage_divider: ${voltage_div}
 
 #  - platform: total_daily_energy
-#    name: "${upper_devicename} Total Daily Energy"
+#    name: "${upperDeviceName} Total Daily Energy"
 #    power_id: "wattage"
 #    filters:
 #      # Multiplication factor from W to kW is 0.001
@@ -70,7 +70,7 @@ sensor:
 #    icon: mdi:clock-alert
 
   - platform: uptime
-    name: ${upper_devicename}_Uptime Sensor
+    name: ${upperDeviceName}_Uptime Sensor
     icon: mdi:clock-outline
 
 time:
@@ -84,20 +84,20 @@ binary_sensor:
       number: GPIO13
       mode: INPUT_PULLUP
       inverted: True
-    name: "${upper_devicename} Button"
+    name: "${upperDeviceName} Button"
     on_press:
       then:
         - switch.toggle: relay
 
   - platform: status
-    name: "${upper_devicename} Status"
+    name: "${upperDeviceName} Status"
 
 
 switch:
   - platform: gpio
     pin: GPIO15
     id: relay
-    name: "${upper_devicename} switch"
+    name: "${upperDeviceName} switch"
     restore_mode: ALWAYS_ON
 
 output:

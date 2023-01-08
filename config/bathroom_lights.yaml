@@ -1,10 +1,10 @@
 
 substitutions:
-  devicename: bathroom_lights
-  upper_devicename: Bathroom light
+  deviceName: bathroom_lights
+  upperDeviceName: Bathroom light
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP8266
   board: esp8285
 
@@ -24,7 +24,7 @@ web_server:
 sensor:
   - platform: wifi_signal
     name: "Bathroom light WiFi Signal Sensor"
-    update_interval: 60s
+    updateInterval: 60s
 
 binary_sensor:
   - platform: gpio

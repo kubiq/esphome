@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: vindriktning
-  upper_devicename: Particle Sensor
-  update_interval: 600s
+  deviceName: vindriktning
+  upperDeviceName: Particle Sensor
+  updateInterval: 600s
 
 esphome:
-  name: $devicename
+  name: $deviceName
   platform: ESP8266
   board: nodemcuv2
 

@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: drawer
-  upper_devicename: Stepper Motor drawer
+  deviceName: drawer
+  upperDeviceName: Stepper Motor drawer
 
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP8266
   board: nodemcuv2
 

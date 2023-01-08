@@ -1,11 +1,11 @@
 
 substitutions:
-  devicename: dynamic_lcd
-  upper_devicename: Dynamic LCD
+  deviceName: dynamic_lcd
+  upperDeviceName: Dynamic LCD
 
 
 esphome:
-  name: ${devicename}
+  name: ${deviceName}
   platform: ESP32
   board: nodemcu-32s
 
@@ -40,8 +40,8 @@ font:
 sensor:
   - platform: wifi_signal
     id: wific
-    name: ${devicename} WiFi Signal Sensor
-    update_interval: 60s
+    name: ${deviceName} WiFi Signal Sensor
+    updateInterval: 60s
 
 
 display:
