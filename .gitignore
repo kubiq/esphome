@@ -11,3 +11,4 @@
 **/partitions.csv
 config/common/secrets.yaml
 .idea
+*.bin

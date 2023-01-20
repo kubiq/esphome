@@ -3,3 +3,7 @@ wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
   fast_connect: true
+  ap:
+    ssid: ${deviceName}
+    password: !secret ap_password
+    ap_timeout: 1min
