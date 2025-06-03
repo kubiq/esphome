@@ -5,7 +5,7 @@ substitutions:
 
 esphome:
   name: ${deviceName}
-  platform: ESP32
+  platform: esp32
   board: nodemcu-32s
 
 packages:
@@ -13,6 +13,6 @@ packages:
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
   #api: !include common/api.yaml
-  ota: !include common/ota.yaml
+  #  ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
   captive_portal: !include common/captive_portal.yaml

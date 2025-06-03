@@ -14,7 +14,6 @@ packages:
   wifi: !include common/wifi.yaml
   mqtt: !include common/mqtt.yaml
   logger: !include common/logger.yaml
-  #api: !include common/api.yaml
   ota: !include common/ota.yaml
   web_server: !include common/web_server.yaml
 
